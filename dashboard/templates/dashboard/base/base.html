@@ -23,6 +23,16 @@
   <!-- Custom styles for this template -->
   <link href="{% static 'dashboard/css/style.css' %}" rel="stylesheet">
   <link href="{% static 'dashboard/css/style-responsive.css' %}" rel="stylesheet">
+  <link
+      type="text/css"
+      href="{% static 'dashboard/toastr/toastr.min.css' %}"
+      rel="stylesheet"
+
+    />
+  <link
+      rel="stylesheet"
+      href="{% static 'dashboard/css/sweetalert2.min.css' %}"
+    />
   <script src="{% static 'dashboard/lib/chart-master/Chart.js' %}"></script>
 
   <!-- =======================================================
@@ -59,6 +69,9 @@
   <!--script for this page-->
   <script src="{% static 'dashboard/lib/sparkline-chart.js' %}"></script>
   <script src="{% static 'dashboard/lib/zabuto_calendar.js' %}"></script>
+  <script src="{% static 'dashboard/js/sweetalert.min.js' %}"></script>
+  <script src="{% static 'dashboard/toastr/toastr.min.js' %}"></script>
+
   <script type="{% static 'dashboard/text/javascript' %}">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
@@ -121,6 +134,7 @@
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
   </script>
+  {% block script %} {% endblock %}
 </body>
 
 </html>

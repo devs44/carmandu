@@ -1,0 +1,71 @@
+{% extends 'dashboard/base/base.html' %}
+{% load static %}
+{% block content %}
+<section id="main-content">
+  <section class="wrapper">
+    <div class="row">
+      <div class="col-lg-9 main-chart">
+        <!--CUSTOM CHART START -->
+        <div class="border-head">
+          <h3>Our Brands</h3>
+          <a href="{% url 'dashboard:brand-create' %}" type="button" class="mb-1 btn btn-outline-primary">Add Brand</a>
+        </div>
+        <div class="card-body">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr>
+                                    <th scope="col">S.N</th>
+                                    <th scope="col" width='25%'>Name</th>
+                                    <th width='20%'>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for brand in object_list %}
+                                <tr>
+                                    <td scope="row">{{ forloop.counter }}</td>
+                                    <td>{{ brand.title }}</td>
+
+                                    <td>
+                                        <span>
+                                            <a href="{% url 'dashboard:brand-update' brand.pk %}" class="btn btn-sm btn-success"><span class ="mdi mr-1 mdi-square-edit-outline">Edit</span></a>
+                                        </span>
+                                        <span>
+                                            <a href="{% url 'dashboard:brand-delete' brand.pk %}" class="btn btn-sm btn-danger delete"><span class ="mdi mr-1 mdi-trash-can">Delete</span></a>
+                                        </span>
+
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+
+    </div>
+    </div>
+    <!-- /row -->
+  </section>
+</section>
+{% block script %}
+<script>
+$('.delete').click(function(e) {
+        e.preventDefault();
+        swal({
+                title: "Are you sure?",
+                text: "It will permanently deleted !",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = $(this).attr('href');
+                    swal(" 'Your file has been deleted.'!", {
+                        icon: "success",
+                    });
+                }
+            });
+    })
+</script>
+{% endblock %}
+{% endblock %}
