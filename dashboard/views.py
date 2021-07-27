@@ -4,73 +4,14 @@ from django.urls import reverse_lazy
 
 from .models import *
 from .forms import *
+from .mixins import *
 # Create your views here.
 
 class DashboardView(TemplateView):
     template_name = 'dashboard/base/index.html'
 
 # brands
-class BrandListView(ListView):
-    template_name = 'dashboard/brand/list.html'
-    model = Brand
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        if "title" in self.request.GET:
-            if self.request.GET.get('title') != '':
-                queryset = queryset.filter(
-                    name__contains=self.request.GET.get("title"))
-        return queryset
-
-
-class BrandCreateView(CreateView):
-    template_name = 'dashboard/brand/form.html'
-    form_class = BrandForm
-    success_url = reverse_lazy('dashboard:brands')
-
-
-class BrandUpdateView(UpdateView):
-    template_name = 'dashboard/brand/form.html'
-    model = Brand
-    form_class = BrandForm
-    success_url = reverse_lazy('dashboard:brands')
-
-
-class BrandDeleteView(DeleteMixin, DeleteView):
-    model = Brand
-    success_url = reverse_lazy('dashboard:brands')
-# brands
-class BrandListView(ListView):
-    template_name = 'dashboard/brand/list.html'
-    model = Brand
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        if "title" in self.request.GET:
-            if self.request.GET.get('title') != '':
-                queryset = queryset.filter(
-                    name__contains=self.request.GET.get("title"))
-        return queryset
-
-
-class BrandCreateView(CreateView):
-    template_name = 'dashboard/brand/form.html'
-    form_class = BrandForm
-    success_url = reverse_lazy('dashboard:brands')
-
-
-class BrandUpdateView(UpdateView):
-    template_name = 'dashboard/brand/form.html'
-    model = Brand
-    form_class = BrandForm
-    success_url = reverse_lazy('dashboard:brands')
-
-
-class BrandDeleteView(DeleteMixin, DeleteView):
-    model = Brand
-    success_url = reverse_lazy('dashboard:brands')
-# brands
-class BrandListView(ListView):
+class BrandListView(NonDeletedListMixin,ListView):
     template_name = 'dashboard/brand/list.html'
     model = Brand
 
@@ -100,27 +41,40 @@ class BrandDeleteView(DeleteMixin, DeleteView):
     model = Brand
     success_url = reverse_lazy('dashboard:brands')
 
+# models
+class ModelListView(NonDeletedListMixin,ListView):
+    template_name = 'dashboard/model/list.html'
+    model = Model
 
-class BrandCreateView(CreateView):
-    template_name = 'dashboard/brand/form.html'
-    form_class = BrandForm
-    success_url = reverse_lazy('dashboard:brands')
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if "title" in self.request.GET:
+            if self.request.GET.get('title') != '':
+                queryset = queryset.filter(
+                    name__contains=self.request.GET.get("title"))
+        return queryset
 
 
-class BrandUpdateView(UpdateView):
-    template_name = 'dashboard/brand/form.html'
-    model = Brand
-    form_class = BrandForm
-    success_url = reverse_lazy('dashboard:brands')
+class ModelCreateView(CreateView):
+    template_name = 'dashboard/model/form.html'
+    form_class = ModelForm
+    success_url = reverse_lazy('dashboard:models')
 
 
-class BrandDeleteView(DeleteMixin, DeleteView):
-    model = Brand
-    success_url = reverse_lazy('dashboard:brands')
+class ModelUpdateView(UpdateView):
+    template_name = 'dashboard/model/form.html'
+    model = Model
+    form_class = ModelForm
+    success_url = reverse_lazy('dashboard:models')
+
+
+class ModelDeleteView(DeleteMixin,DeleteView):
+    model = Model
+    success_url = reverse_lazy('dashboard:models')
 
 
 # cars
-class CarListView(ListView):
+class CarListView(NonDeletedListMixin,ListView):
     template_name = 'dashboard/cars/list.html'
     model = Car
 

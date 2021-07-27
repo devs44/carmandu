@@ -1,5 +1,5 @@
 {% extends 'dashboard/base/base.html' %}
-{% block title %} Brands {% endblock %}
+{% block title %} Model {% endblock %}
 {% load static %}
 {% block content %}
 <section id="main-content">
@@ -8,8 +8,8 @@
       <div class="col-lg-9 main-chart">
         <!--CUSTOM CHART START -->
         <div class="border-head">
-          <h3>Our Brands</h3>
-          <a href="{% url 'dashboard:brand-create' %}" type="button" class="mb-1 btn btn-outline-primary">Add Brand</a>
+          <h3>Our Models</h3>
+          <a href="{% url 'dashboard:model-create' %}" type="button" class="mb-1 btn btn-outline-primary">Add Model</a>
         </div>
         <div class="card-body">
                         <table class="table table-hover ">
@@ -21,17 +21,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for brand in object_list %}
+                                {% for model in object_list %}
                                 <tr>
                                     <td scope="row">{{ forloop.counter }}</td>
-                                    <td>{{ brand.title }}</td>
+                                    <td>{{ model.title }}</td>
 
                                     <td>
                                         <span>
-                                            <a href="{% url 'dashboard:brand-update' brand.pk %}" class="btn btn-sm btn-success"><span class ="mdi mr-1 mdi-square-edit-outline">Edit</span></a>
+                                            <a href="{% url 'dashboard:model-update' model.pk %}" class="btn btn-sm btn-success"><span class ="mdi mr-1 mdi-square-edit-outline">Edit</span></a>
                                         </span>
                                         <span>
-                                            <a href="{% url 'dashboard:brand-delete' brand.pk %}" class="btn btn-sm btn-danger delete"><span class ="mdi mr-1 mdi-trash-can">Delete</span></a>
+                                            <a href="{% url 'dashboard:model-delete' model.pk %}" class="btn btn-sm btn-danger delete"><span class ="mdi mr-1 mdi-trash-can">Delete</span></a>
                                         </span>
 
                                     </td>
