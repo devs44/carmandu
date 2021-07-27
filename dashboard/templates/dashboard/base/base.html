@@ -8,11 +8,11 @@
   <meta name="description" content="">
   <meta name="author" content="Dashboard">
   <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-  <title>Dashio - Bootstrap Admin Template</title>
+   <title>Carmandu | {% block title %} {% endblock %}</title>
 
   <!-- Favicons -->
-  <link href="{% static 'dashboard/img/favicon.png'%}" rel="icon">
-  <link href="{% static 'dashboard/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="{% static 'dashboard/img/favicon.ico'%}" rel="icon">
+  <link href="{% static 'dashboard/img/favicon.ico' %}" rel="favicon-icon">
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'dashboard/lib/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -71,7 +71,7 @@
   <script src="{% static 'dashboard/lib/zabuto_calendar.js' %}"></script>
   <script src="{% static 'dashboard/js/sweetalert.min.js' %}"></script>
   <script src="{% static 'dashboard/toastr/toastr.min.js' %}"></script>
-
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script type="{% static 'dashboard/text/javascript' %}">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
