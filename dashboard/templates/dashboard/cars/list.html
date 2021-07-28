@@ -1,74 +1,63 @@
 {% extends 'dashboard/base/base.html' %}
 {% block title %} Cars {% endblock %}
+{% load static %}
 {% block content %}
-<div class="content-wrapper">
-    <div class="content">
-
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb p-0">
-                <li class="breadcrumb-item">
-                    <a href="{% url 'dashboard:dashboard' %}">
-                    <span class="mdi mdi-home"></span>
-                    </a>
-                </li>
-                <li class="breadcrumb-item">
-                    Our
-                </li>
-                <li class="breadcrumb-item" aria-current="page">Cars</li>
-                </ol>
-
-            </nav>
-          <div class="input-group justify-content-end">
-                    <form action="{% url 'dashboard:cars' %}" method="GET" class="form-inline">
-                      <input
-                        type="text"
-                        name="name"
-                        class="form-control float-right searchInput"
-                        id="SearchBrand"
-                        placeholder="Brand name"
-                      />
-                      <div class="input-group-append">
-                         <button type="submit" class="mb-1 btn btn-success">
-                          <span class="mdi mdi-magnify"></span>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-
-
-
-     <div class="row">
-
-            <div class="col-12">
-                <div class="card card-default">
-                    <div class="card-header card-header-border-bottom justify-content-between">
-                        <h2>Cars List</h2>
-                                    <a href="{% url 'dashboard:cars-create' %}" type="button" class="mb-1 btn btn-outline-primary">Add Brand</a>
-
-                </div>
-
-                    <div class="card-body">
+<section id="main-content">
+  <section class="wrapper">
+    <div class="row">
+      <div class="col-lg-9 main-chart">
+        <!--CUSTOM CHART START -->
+        <div class="border-head">
+          <h3>Our Cars</h3>
+          <a href="{% url 'dashboard:cars-create' %}" type="button" class="mb-1 btn btn-outline-primary">Add Cars</a>
+        </div>
+        <div class="card-body">
                         <table class="table table-hover ">
                             <thead>
                                 <tr>
                                     <th scope="col">S.N</th>
                                     <th scope="col" width='25%'>Name</th>
-                                    <th scope="col">Logo</th>
+                                    <th scope="col" width='25%'>Brand</th>
+                                    <th scope="col" width='25%'>Model</th>
+                                    <th scope="col" width='25%'>Type</th>
+                                    <th scope="col" width='25%'>category</th>
+                                    <th scope="col" width='25%'>Features</th>
+                                    <th scope="col" width='25%'>Location</th>
+                                    <th scope="col" width='25%'>Year</th>
+                                    <th scope="col" width='25%'>Color</th>
+                                    <th scope="col" width='25%'>Transmission</th>
+                                    <th scope="col" width='25%'>Image</th>
+                                    <th scope="col" width='25%'>Price</th>
+                                    <th scope="col" width='25%'>Description</th>
                                     <th width='20%'>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for car in object_list %}
+                                {% for cars in object_list %}
                                 <tr>
                                     <td scope="row">{{ forloop.counter }}</td>
-                                    <td>{{ brand.name }}</td>
-                                    <td><img src="{{ brand.logo.url}}" style="width: 20%;"/></td>
+                                    <td>{{ cars.name }}</td>
+                                    <td>{{ cars.brand }}</td>
+                                    <td>{{ cars.model }}</td>
+                                    <td>{{ cars.type }}</td>
+                                    <td>{{ cars.category }}</td>
+                                    <td>{{ cars.features }}</td>
+                                    <td>{{ cars.location }}</td>
+                                    <td>{{ cars.year }}</td>
+                                    <td>{{ cars.color }}</td>
+                                    <td>{{ cars.transmission }}</td>
+                                    <td>{{ cars.image }}</td>
+                                    <td>{{ cars.price }}</td>
+                                    <td>{{ cars.description|safe }}</td>
+                                    <td>{{ cars.is_on_sale }}</td>
+                                    <td>{{ cars.is_on_rent }}</td>
+                                    <td>{{ cars.is_featured }}</td>
                                     <td>
                                         <span>
-                                            <a href="{% url 'dashboard:brand-update' brand.pk %}" class="btn btn-sm btn-success"><span class ="mdi mr-1 mdi-square-edit-outline">Edit</span></a>
+                                            <a href="{% url 'dashboard:cars-update' cars.pk %}" class="btn btn-sm btn-success"><span class ="mdi mr-1 mdi-square-edit-outline">Edit</span></a>
                                         </span>
                                         <span>
-                                            <a href="{% url 'dashboard:brand-delete' brand.pk %}" class="btn btn-sm btn-danger delete"><span class ="mdi mr-1 mdi-trash-can">Delete</span></a>
+                                            <a href="{% url 'dashboard:cars-delete' cars.pk %}" class="btn btn-sm btn-danger delete"><span class ="mdi mr-1 mdi-trash-can">Delete</span></a>
                                         </span>
 
                                     </td>
@@ -77,13 +66,13 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
 
-            </div>
-        </div>
+
     </div>
-  </div>
-{% endblock %}
+    </div>
+    <!-- /row -->
+  </section>
+</section>
 {% block script %}
 <script>
 $('.delete').click(function(e) {
@@ -105,4 +94,5 @@ $('.delete').click(function(e) {
             });
     })
 </script>
+{% endblock %}
 {% endblock %}
