@@ -162,6 +162,17 @@ class Car(DateTimeModel):
     def __str__(self):
         return self.name
 
+class CarImage(DateTimeModel):
+    car = models.ForeignKey(Car, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='cars/images/')
+    
+    class Meta:
+        verbose_name = ('CarImage')
+        verbose_name_plural = ('CarImages')
+
+    def __str__(self):
+        return self.car.name
+
 class About(DateTimeModel):
     image = models.ImageField(upload_to='about')
     description = RichTextField()
