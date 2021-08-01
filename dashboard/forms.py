@@ -16,6 +16,11 @@ class CarForm(FormControlMixin, forms.ModelForm):
         fields = "__all__"
         def __init__(self, *args, **kwargs):
           super().__init__(*args, **kwargs)
+          
+          self.fields['features'].widget.attrs.update({
+            'class': 'form-control select2 feature-select',
+            'multiple': 'multiple'
+          })
           self.fields['is_on_sale'].widget.attrs.update({
               'class': "control outlined control-checkbox checkbox-success"
           })
@@ -37,10 +42,8 @@ class CarForm(FormControlMixin, forms.ModelForm):
           self.fields['category'].widget.attrs.update({
               'class': 'form-control select2'
           })
-          self.fields['features'].widget.attrs.update({
-            'class': 'form-control select2 feature-select',
-            'multiple': 'multiple'
-          })
+          
+       
 
 # carimage
 class CarImageForm(forms.ModelForm):
@@ -63,11 +66,7 @@ class TypeForm(FormControlMixin, forms.ModelForm):
         fields = "__all__"
 
 
-# categories
-class CategoryForm(FormControlMixin, forms.ModelForm):
-      class Meta:
-        model = Category
-        fields = "__all__"
+
 
 # features
 class FeatureForm(FormControlMixin, forms.ModelForm):
@@ -118,9 +117,15 @@ class ServicesVideoForm(FormControlMixin, forms.ModelForm):
         model = ServicesVideo
         fields = "__all__"
 
-# services-video
+# contact
 class ContactForm(FormControlMixin, forms.ModelForm):
       class Meta:
         model = Contact
         fields = "__all__"
        
+
+# messages
+class MessageForm(FormControlMixin, forms.ModelForm):
+      class Meta:
+        model = Message
+        fields = "__all__"

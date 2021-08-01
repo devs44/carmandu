@@ -28,33 +28,40 @@
             <h1>Contact <span>Us</span></h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</p>
         </div>
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
             <div class="row">
                 <div class="col-lg-7">
                     <div class="row">
                         <div class="col-md-6 text-left">
                             <div class="form-group name">
-                                <input type="text" name="name" class="form-control" placeholder="Full Name" required>
+                               Full Name 
+                            {{form.full_name}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group email">
-                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            Email
+                                {{form.email}}
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="form-group number">
+                            Phone
+                               {{form.phone}}
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group subject">
-                                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group number">
-                                <input type="text" name="phone" class="form-control" placeholder="Phone Number">
+                            Subject
+                                {{form.subject}}
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group message">
-                                <textarea class="form-control" name="message" placeholder="Write message"></textarea>
+                            Message
+                               {{form.message}}
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -62,9 +69,11 @@
                                 <button type="submit" class="btn btn-md button-theme">Send Message</button>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-5">
+                {%for contact in contact %}
                     <div class="contact-info-2">
                         <div class="ci-box">
                             <div class="icon">
@@ -72,7 +81,7 @@
                             </div>
                             <div class="detail">
                                 <h5>Phone:</h5>
-                                <p><a href="#">0477 8556 552</a></p>
+                                <p><a href="#">{{contact.phone}}</a></p>
                             </div>
                         </div>
                         <div class="ci-box">
@@ -81,28 +90,21 @@
                             </div>
                             <div class="detail">
                                 <h5>Email:</h5>
-                                <p><a href="#">info@themevessel.com</a></p>
+                                <p><a href="#">{{contact.email}}</a></p>
                             </div>
                         </div>
-                        <div class="ci-box">
-                            <div class="icon">
-                                <i class="flaticon-earth"></i>
-                            </div>
-                            <div class="detail">
-                                <h5>Web:</h5>
-                                <p><a href="#">info@themevessel.com</a></p>
-                            </div>
-                        </div>
+                        
                         <div class="ci-box mb-0">
                             <div class="icon">
                                 <i class="flaticon-fax"></i>
                             </div>
                             <div class="detail">
                                 <h5>Fax:</h5>
-                                <p><a href="#">+0477 85X6 552</a></p>
+                                <p><a href="#">{{contact.fax}}</a></p>
                             </div>
                         </div>
                     </div>
+                {% endfor %}
                 </div>
             </div>
         </form>

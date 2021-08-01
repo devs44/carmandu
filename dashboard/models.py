@@ -14,8 +14,9 @@ LOCATION = (
 
 COLOR = (
     ('Red', 'Red'),
-    ('White', 'Red'),
+    ('White', 'White'),
     ('Grey', 'Grey'),
+    ('Black','Black'),
 )
 
 YEAR = (
@@ -114,16 +115,7 @@ class Type(DateTimeModel):
     def __str__(self):
         return self.title
 
-class Category(DateTimeModel):
-    title = models.CharField(max_length=200)
 
-    class Meta:
-        verbose_name = ('Category')
-        verbose_name_plural = ('Categorys')
-        ordering = ['-title']
-
-    def __str__(self):
-        return self.title
 
 class Features(DateTimeModel):
     title = models.CharField(max_length=200)
@@ -141,7 +133,6 @@ class Car(DateTimeModel):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     model = models.ForeignKey(Model, on_delete=models.CASCADE)
     type = models.ForeignKey(Type, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     features = models.ForeignKey(Features, on_delete=models.CASCADE)
     location = models.CharField(max_length=200, choices=LOCATION)
     year = models.CharField(max_length=200, choices=YEAR)
@@ -223,6 +214,22 @@ class ServicesVideo(DateTimeModel):
 
     def __str__(self):
         return self.description
+
+
+class Message(DateTimeModel):
+    full_name = models.CharField(max_length=200)
+    email = models.EmailField()
+    subject = models.TextField(max_length=500)
+    phone = models.CharField(max_length=200)
+    message = models.TextField(max_length=500)
+
+    class Meta:
+        verbose_name = ('Message')
+        verbose_name_plural = ('Messages')
+
+    def __str__(self):
+        return self.full_name
+
 
 class Contact(DateTimeModel):
     phone = models.CharField(max_length=200)
