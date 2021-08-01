@@ -106,36 +106,9 @@ class TypeDeleteView(DeleteMixin,DeleteView):
     model = Type
     success_url = reverse_lazy('dashboard:types')
 
-# category
-class CategoryListView(NonDeletedListMixin,ListView):
-    template_name = 'dashboard/category/list.html'
-    model = Category
-
-    def get_queryset(self):
-        queryset = super().get_queryset()
-        if "title" in self.request.GET:
-            if self.request.GET.get('title') != '':
-                queryset = queryset.filter(
-                    name__contains=self.request.GET.get("title"))
-        return queryset
 
 
-class CategoryCreateView(CreateView):
-    template_name = 'dashboard/category/form.html'
-    form_class = CategoryForm
-    success_url = reverse_lazy('dashboard:categories')
 
-
-class CategoryUpdateView(UpdateView):
-    template_name = 'dashboard/category/form.html'
-    model = Category
-    form_class = CategoryForm
-    success_url = reverse_lazy('dashboard:categories')
-
-
-class CategoryDeleteView(DeleteMixin,DeleteView):
-    model = Category
-    success_url = reverse_lazy('dashboard:categories')
 
 # features
 class FeatureListView(NonDeletedListMixin,ListView):
@@ -336,3 +309,13 @@ class ContactUpdateView(UpdateView):
 class ContactDeleteView(DeleteMixin,DeleteView):
     model = Contact
     success_url = reverse_lazy('dashboard:contacts')
+
+
+# message
+class MessageListView(NonDeletedListMixin,ListView):
+    template_name = 'dashboard/message/list.html'
+    model = Message
+
+class MessageDeleteView(DeleteMixin,DeleteView):
+    model = Message
+    success_url = reverse_lazy('dashboard:messages')

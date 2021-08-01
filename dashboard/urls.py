@@ -28,12 +28,6 @@ urlpatterns = [
               TypeUpdateView.as_view(), name='type-update'),
     path('dashboard/type/<int:pk>/delete/',  TypeDeleteView.as_view(), name='type-delete'),
 
-    # category
-    path('dashboard/category/list/', CategoryListView.as_view(), name='categories'),
-    path('dashboard/category/create/',  CategoryCreateView.as_view(), name='category-create'),
-    path('dashboard/category/<int:pk>/update/',
-              CategoryUpdateView.as_view(), name='category-update'),
-    path('dashboard/category/<int:pk>/delete/',  CategoryDeleteView.as_view(), name='category-delete'),
 
     # features
     path('dashboard/features/list/', FeatureListView.as_view(), name='features'),
@@ -78,6 +72,12 @@ urlpatterns = [
     path('dashboard/services-video/<int:pk>/update/',
               ServiceVideoUpdateView.as_view(), name='service-video-update'),
     path('dashboard/services-video/<int:pk>/delete/',  ServiceVideoDeleteView.as_view(), name='service-video-delete'),
+
+
+    # message
+    path('dashboard/message/list/', MessageListView.as_view(), name='messages'),
+    path('dashboard/message/<int:pk>/delete/',  MessageDeleteView.as_view(), name='message-delete'),
+
 
     # contact
     path('dashboard/contact/list/', ContactListView.as_view(), name='contacts'),
